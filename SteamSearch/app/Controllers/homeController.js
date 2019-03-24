@@ -5,7 +5,7 @@
         .module('steamSearch')
         .controller('homeController', HomeController)
 
-    HomeController.$inject = ['$scope','steamService'];
+    HomeController.$inject = ['$scope', 'steamService'];
 
     function HomeController($scope, steamService) {
 
@@ -13,9 +13,18 @@
         $scope.test = "Hello world";
 
         $scope.steamService = steamService;
-        $scope.menuState = "navRecent";
+        $scope.menuState = "navUser";
 
 
-        
+        $scope.init = function () {
+
+          //  if ($scope.steamService.allGames.length < 1)
+             //   $scope.steamService.GetAllGames();
+        }
+
+        console.log($scope.menuState);
+
+
+
     }
 })();

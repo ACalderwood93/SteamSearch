@@ -1,7 +1,8 @@
 ﻿
 html, body {
-    height: 100%;
-    font-size:12px;
+    position: relative;
+    min-height: 100%;
+    font-size: 12px;
 }
 
 .navbar {
@@ -33,3 +34,5 @@ html, body {
 .nav-link {
     cursor: pointer;
 }
+
+

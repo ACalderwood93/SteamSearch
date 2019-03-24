@@ -5,6 +5,13 @@ VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamSearch", "SteamSearch\SteamSearch.csproj", "{211F37CD-0EAA-4FBB-A893-31FC69572E3C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SteamSearchApi", "SteamSearchApi\SteamSearchApi.csproj", "{603DD243-2B0F-4535-B939-3D1A945393CB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F85042F6-9E3C-4CC4-85C1-3367AF75481A} = {F85042F6-9E3C-4CC4-85C1-3367AF75481A}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fluxter.SteamWebAPI", "Fluxter.SteamWebAPI\Fluxter.SteamWebAPI.csproj", "{F85042F6-9E3C-4CC4-85C1-3367AF75481A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +22,14 @@ Global
 		{211F37CD-0EAA-4FBB-A893-31FC69572E3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{211F37CD-0EAA-4FBB-A893-31FC69572E3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{211F37CD-0EAA-4FBB-A893-31FC69572E3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{603DD243-2B0F-4535-B939-3D1A945393CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{603DD243-2B0F-4535-B939-3D1A945393CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{603DD243-2B0F-4535-B939-3D1A945393CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{603DD243-2B0F-4535-B939-3D1A945393CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F85042F6-9E3C-4CC4-85C1-3367AF75481A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F85042F6-9E3C-4CC4-85C1-3367AF75481A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F85042F6-9E3C-4CC4-85C1-3367AF75481A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F85042F6-9E3C-4CC4-85C1-3367AF75481A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
