@@ -1,1 +1,1 @@
-* [VIdeo](https://www.youtube.com/watch?v=badhgfkyrjs) - Demo
+* [Demo](https://www.youtube.com/watch?v=badhgfkyrjs)
