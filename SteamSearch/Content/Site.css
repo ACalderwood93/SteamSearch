@@ -1,0 +1,35 @@
+﻿
+html, body {
+    height: 100%;
+    font-size:12px;
+}
+
+.navbar {
+
+    margin:0;
+}
+
+.jumbo-title {
+    background-color: #0E151E;
+    color: white;
+    border-radius: 0px;
+    background-image: url("https://cdn.uploadvr.com/wp-content/uploads/2016/07/steam-game-image-collage.png");
+    background-size: cover;
+}
+
+    .jumbo-title h1 {
+        font-size: 100px;
+    }
+
+
+.shadows-font {
+    font-family: 'Shadows Into Light', cursive;
+}
+
+.game-card {
+}
+
+
+.nav-link {
+    cursor: pointer;
+}

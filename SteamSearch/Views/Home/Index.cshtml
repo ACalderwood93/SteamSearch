@@ -1,0 +1,220 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div ng-app="steamSearch" ng-controller="homeController">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand shadows-font" href="#"><i class="fab fa-steam mr-2"> </i>Steam Search</a>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown" style="display:none;">
+                    <a href="#"
+                       class="nav-link dropdown-toggle"
+                       data-toggle="dropdown">Tools</a>
+                    <div class="dropdown-menu" style="display:none;">
+                        <a href="#" class="dropdown-item">Link 1</a>
+                        <a href="#" class="dropdown-item">Link 2</a>
+                        <a href="#" class="dropdown-item">Link 3</a>
+                    </div>
+                </li>
+                <li class="nav-item" style="display:none;">
+                    <a class="nav-link" href="#">Play With Friends</a>
+                </li>
+                <li class="nav-item" style="display:none;">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+            <form class="form-inline ml-auto">
+                <input type="text" class="form-control mr-2" placeholder="Find By Username or SteamId..." ng-model="steamId">
+                <button class="btn btn-outline-success">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="jumbotron  text-center jumbo-title">
+        <h1 class="shadows-font">Steam Search <i class="fab fa-steam"></i></h1>
+        <hr />
+        <div class="container">
+            <div class="input-group mb-3">
+                <input class="form-control"
+                       type="text"
+                       placeholder="Find By Username or SteamId..." ng-model="steamId" />
+                <div class="input-group-append">
+                    <button class="btn bg-dark" style="color:white" type="button">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container content-container">
+
+        <div class="row mb-3">
+            <ul class="nav nav-tabs w-100">
+                <li class="nav-item">
+                    <a class="nav-link " id="navUser" ng-class="menuState == 'navUser' ? 'active' : ''  " ng-click="menuState = 'navUser'">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="navRecent" ng-class="menuState == 'navRecent' ? 'active' : ''  " ng-click="menuState = 'navRecent'">Recent Games</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="navFriends" ng-class="menuState == 'navFriends' ? 'active' : ''  " ng-click="menuState = 'navFriends'">Friends</a>
+                </li>
+            </ul>
+
+
+        </div>
+
+
+        <div class="row" ng-switch="menuState">
+
+            <div class="row" ng-switch-when="navRecent">
+                <div class="col-md-4 mb-3">
+                    <div class="card game-card ">
+                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                            <h6 class="card-title">
+                                Time Played</h4>
+                                <p class="card-text">
+                                    This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                    is a little bit longer.
+                                </p>
+                                <a class="btn btn-outline-primary" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card game-card ">
+                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">{{steamService.helloWorld()}}</h4>
+                            <h6 class="card-title">
+                                Time Played</h4>
+                                <p class="card-text">
+                                    This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                    is a little bit longer.
+                                </p>
+                                <a class="btn btn-outline-primary" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card game-card ">
+                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                            <h6 class="card-title">
+                                Time Played</h4>
+                                <p class="card-text">
+                                    This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                    is a little bit longer.
+                                </p>
+                                <a class="btn btn-outline-primary" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card game-card ">
+                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                            <h6 class="card-title">
+                                Time Played</h4>
+                                <p class="card-text">
+                                    This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                    is a little bit longer.
+                                </p>
+                                <a class="btn btn-outline-primary" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card game-card ">
+                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/218620/header.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">PAYDAY 2</h4>
+                            <h6 class="card-title">
+                                Time Played</h4>
+                                <p class="card-text">
+                                    This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                    is a little bit longer.
+                                </p>
+                                <a class="btn btn-outline-primary" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card game-card ">
+                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                            <h6 class="card-title">
+                                Time Played</h4>
+                                <p class="card-text">
+                                    This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                    is a little bit longer.
+                                </p>
+                                <a class="btn btn-outline-primary" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card game-card ">
+                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                            <h6 class="card-title">
+                                Time Played</h4>
+                                <p class="card-text">
+                                    This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                    is a little bit longer.
+                                </p>
+                                <a class="btn btn-outline-primary" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <div class="card game-card ">
+                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                            <h6 class="card-title">
+                                Time Played</h4>
+                                <p class="card-text">
+                                    This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                    is a little bit longer.
+                                </p>
+                                <a class="btn btn-outline-primary" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="w-100" ng-switch-when="navUser">
+                <div class="col-md-3">
+                    User side Bar
+                </div>
+                <div class="col-md-9">
+                    User Info
+                </div>
+            </div>
+            <div class="row" ng-switch-when="navFriends">
+                Friends
+            </div>
+
+
+
+        </div>
+
+
+    </div>
+    <footer class="w-100 bg-dark pb-3 ">
+        |<div class="container" style="color:white;">
+            <div style="text-align:center">
+
+                Made by <a href="http://andrewcalderwood.co.uk" target="_blank"> Andrew Calderwood</a>
+            </div>
+
+        </div>
+
+    </footer>
