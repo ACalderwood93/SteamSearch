@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+      crossorigin="anonymous"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+
+    <title>Steam Search</title>
+
+    <style>
+
+        html,body {
+
+            height:100%;
+            
+        }
+
+      .jumbo-title {
+        background-color: #0E151E;
+        color: white;
+        border-radius: 0px;
+        background-image: url("https://cdn.uploadvr.com/wp-content/uploads/2016/07/steam-game-image-collage.png");
+        background-size: cover;
+      }
+
+      .jumbo-title h1 {
+        font-size: 100px;
+      }
+
+
+.shadows-font{
+    font-family: 'Shadows Into Light', cursive;
+}
+
+      .game-card{
+
+         
+          
+      }
+
+
+      .nav-link {
+
+
+          cursor:pointer;
+      }
+
+
+      
+    </style>
+  </head>
+
+  <body>
+    
+        
+      <nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top" >
+        <div class="container">
+          <a class="navbar-brand shadows-font" href="#" ><i class="fab fa-steam mr-2"> </i>Steam Search</a>
+          <ul class="navbar-nav">
+            <li class="nav-item dropdown" style="display:none;">
+              <a
+                href="#"
+                class="nav-link dropdown-toggle"
+                data-toggle="dropdown"
+                >Tools</a
+              >
+              <div class="dropdown-menu" style="display:none;">
+                <a href="#" class="dropdown-item">Link 1</a>
+                <a href="#" class="dropdown-item">Link 2</a>
+                <a href="#" class="dropdown-item">Link 3</a>
+              </div>
+            </li>
+            <li class="nav-item" style="display:none;">
+              <a class="nav-link" href="#">Play With Friends</a>
+            </li>
+            <li class="nav-item" style="display:none;">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+          </ul>
+          <form class="form-inline ml-auto">
+                <input type="text" class="form-control mr-2" placeholder="Find By Username or SteamId...">
+                <button class="btn btn-outline-success">Search</button>
+            </form>
+        </div>
+      </nav>
+    
+    <div class="jumbotron  text-center jumbo-title">
+      <h1 class="shadows-font">Steam Search <i class="fab fa-steam"></i></h1>
+      <hr />
+      <div class="container">
+        <div class="input-group mb-3">
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Find By Username or SteamId..."
+          />
+          <div class="input-group-append">
+            <button class="btn bg-dark" style="color:white" type="button" >Search</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container content-container" >
+
+        <div class="row mb-3" >
+                        <ul class="nav nav-tabs w-100">
+                    <li class="nav-item">
+                      <a class="nav-link " >User</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link active" >Recent Games</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" >Friends</a>
+                    </li>
+                   </ul>
+        
+
+        </div>
+
+
+        <div class="row">
+            
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <div class="card game-card ">
+                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                        <div class="card-body">
+                            <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                            <h6 class="card-title">Time Played</h4>
+                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                is a little bit longer.</p>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                        is a little bit longer.</p>
+                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                                is a little bit longer.</p>
+                                <a class="btn btn-outline-primary" href="#">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-3">
+                        <div class="card game-card ">
+                            <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                                <h6 class="card-title">Time Played</h4>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                    is a little bit longer.</p>
+                                    <a class="btn btn-outline-primary" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                            <div class="card game-card ">
+                                <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                                <div class="card-body">
+                                    <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                                    <h6 class="card-title">Time Played</h4>
+                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                        is a little bit longer.</p>
+                                        <a class="btn btn-outline-primary" href="#">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                                <div class="card game-card ">
+                                    <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                                        <h6 class="card-title">Time Played</h4>
+                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                            is a little bit longer.</p>
+                                            <a class="btn btn-outline-primary" href="#">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                <div class="col-md-4 mb-3">
+                        <div class="card game-card ">
+                            <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                            <div class="card-body">
+                                <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                                <h6 class="card-title">Time Played</h4>
+                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                    is a little bit longer.</p>
+                                    <a class="btn btn-outline-primary" href="#">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                            <div class="card game-card ">
+                                <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/218620/header.jpg" alt="">
+                                <div class="card-body">
+                                    <h4 class="card-title">PAYDAY 2</h4>
+                                    <h6 class="card-title">Time Played</h4>
+                                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                        is a little bit longer.</p>
+                                        <a class="btn btn-outline-primary" href="#">Read More</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                                <div class="card game-card ">
+                                    <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                                    <div class="card-body">
+                                        <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                                        <h6 class="card-title">Time Played</h4>
+                                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                            is a little bit longer.</p>
+                                            <a class="btn btn-outline-primary" href="#">Read More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                    <div class="card game-card ">
+                                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                                        <div class="card-body">
+                                            <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                                            <h6 class="card-title">Time Played</h4>
+                                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                                is a little bit longer.</p>
+                                                <a class="btn btn-outline-primary" href="#">Read More</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                        <div class="card game-card ">
+                                            <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/814380/header.jpg" alt="">
+                                            <div class="card-body">
+                                                <h4 class="card-title">Sekiro™: Shadows Die Twice</h4>
+                                                <h6 class="card-title">Time Played</h4>
+                                                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content
+                                                    is a little bit longer.</p>
+                                                    <a class="btn btn-outline-primary" href="#">Read More</a>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </div>
+                    
+                </div>
+
+                
+            
+    </div>
+
+   <div class="w-100 bg-dark pb-3">
+        |<div class="container shadows-font" style="color:white;">
+            <div style="text-align:center">
+
+                    Made by <a href="http://andrewcalderwood.co.uk" target="_blank"> Andrew Calderwood</a>
+            </div>
+
+        </div>
+
+    </div>
+        
+
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+      integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
