@@ -20,7 +20,7 @@ namespace SteamSearchApi.Controllers
             var req = SteamWebAPI.CustomRequest("ISteamUser", "GetPlayerSummaries", "v0002", new { steamids = steamId });
 
             var responseString = req.GetResponseString(RequestFormat.JSON);
-
+            //
 
             return Ok(responseString);
         }
