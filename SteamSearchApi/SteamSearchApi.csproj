@@ -189,6 +189,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Util.cs" />
+    <Compile Include="Models\Repositories\SteamRepository.cs" />
+    <Compile Include="Models\Responses\HttpFriendsListResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +225,10 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\SteamSearch - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\SteamSearch - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\SteamSearchAPI - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\SteamSearchAPI - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -245,7 +252,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Steam\" />
   </ItemGroup>
   <ItemGroup>

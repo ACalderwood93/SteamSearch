@@ -22,6 +22,27 @@
              //   $scope.steamService.GetAllGames();
         }
 
+        $scope.navClicked = function (navId) {
+
+            switch (navId) {
+
+                case "navUser":
+                    break;
+
+                case "navRecent":
+                    break;
+
+                case "navFriends":
+                    $scope.steamService.GetAllFriends($scope.steamId);
+                    break;
+            }
+
+            $scope.menuState = navId;
+
+
+
+        }
+
         console.log($scope.menuState);
 
 

@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Http;
 using Fluxter.SteamWebAPI;
-
+using Fluxter.SteamWebAPI.Fluent.General.ISteamUser;
+using Fluxter.SteamWebAPI.Interfaces.General.ISteamUser.GetFriendList;
+using SteamSearchApi.Models.Responses;
 
 namespace SteamSearchApi.Controllers
 {
@@ -36,7 +39,6 @@ namespace SteamSearchApi.Controllers
 
         }
 
-
         [Route("api/steam/getownedgames/{steamId}")]
         public IHttpActionResult GetOwnedGames(string steamId)
         {
@@ -61,6 +63,24 @@ namespace SteamSearchApi.Controllers
 
 
             return Ok(responseString);
+        }
+
+        [Route("api/steam/getFriends/{steamId}")]
+        public IHttpActionResult GetFriends(string steamId)
+        {
+
+            // var req = new GetFriendListRequest(WebConfigurationManager.AppSettings["steamApiKey"]);
+            // var req = SteamWebAPI.("ISteamuser", "GetFriendList", "v0001", new { steamId = steamId, relationship = "friend" });
+
+            //  var friendListBuilder = new GetFriendListBuilder(req);
+            // friendListBuilder.
+
+            //  var responseString = req.GetResponseString(RequestFormat.JSON);
+
+            //HttpFriendListResponse response = Newtonsoft.Json.JsonConvert.DeserializeObject<HttpFriendListResponse>(responseString);
+
+            //return Ok(responseString);
+            return Ok();
         }
 
     }

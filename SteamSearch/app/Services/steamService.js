@@ -1,81 +1,4 @@
-﻿//// todo; use '$resource' instead?
-
-//(function () {
-//    'use strict';
-
-//    angular.module('steamSearch')
-//        .factory('steamService', steamService);
-
-//    steamService.$inject = ['$http', 'SteamApiKey','WebApiUrl'];
-
-//    function steamService($http, SteamApiKey, WebApiUrl) {
-
-//        var userData = {};
-//        var recentGames = [];
-
-//        function GetSteamUserInfo(steamId) {
-
-
-
-//            $http({
-//                method: 'GET',
-//                url: WebApiUrl + "/api/steam/getuser/" + steamId
-//            }).then(function successCallback(response) {
-
-//                debugger;
-//                userData = JSON.parse(response.data).response.players[0];
-
-
-//                GetRecentPlayedGames(steamId);
-//                // this callback will be called asynchronously
-//                // when the response is available
-//                }, function errorCallback(response) {
-//                    debugger;
-//                // called asynchronously if an error occurs
-//                // or server returns response with an error status.
-//            });
-
-
-//        }
-//        function GetRecentPlayedGames(steamId) {
-
-//            $http({
-//                method: 'GET',
-//                url: WebApiUrl + "/api/steam/getrecentgames/" + steamId
-//            }).then(function successCallback(response) {
-
-//                debugger;
-//                recentGames = JSON.parse(response.data).response.games;
-
-//                // this callback will be called asynchronously
-//                // when the response is available
-//            }, function errorCallback(response) {
-//                debugger;
-//                // called asynchronously if an error occurs
-//                // or server returns response with an error status.
-//            });
-//        }
-
-
-
-
-
-
-
-
-
-//        var service = {
-//            GetSteamUserInfo,
-//            userData,
-//            recentGames
-//        }
-
-
-//        return service;
-
-
-//    }
-//})();
+﻿
 
 ﻿//////////////////////////////////////////
 // Client AngularJS Service
@@ -91,8 +14,10 @@
             this.ownedGames = [];
             this.dataLoaded = false;
             this.allGames = [];
+            this.friends = [];
+            this.steamId = "";
 
-            
+
 
             this.GetRecentPlayedGames = function (steamId) {
 
@@ -182,8 +107,27 @@
 
 
             }
+            this.GetAllFriends = function (steamId) {
 
-           
+                var service = this;
+                $http({
+                    method: 'GET',
+                    url: WebApiUrl + "/api/steam/getFriends/" + steamId
+                }).then(function successCallback(response) {
+
+
+                    service.friends = JSON.parse(response.data).friendslist.friends;
+                    console.log(service.service.friends);
+                    // this callback will be called asynchronously
+                    // when the response is available
+                }, function errorCallback(response) {
+                    service.dataLoaded = true;
+                    // called asynchronously if an error occurs
+                    // or server returns response with an error status.
+                });
+
+            }
+
 
 
 
