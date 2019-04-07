@@ -11,7 +11,7 @@
 
 
         $scope.test = "Hello world";
-
+        
         $scope.steamService = steamService;
         $scope.menuState = "navUser";
 

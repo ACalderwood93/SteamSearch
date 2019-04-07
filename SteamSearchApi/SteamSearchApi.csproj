@@ -190,8 +190,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Util.cs" />
+    <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Repositories\SteamRepository.cs" />
     <Compile Include="Models\Responses\HttpFriendsListResponse.cs" />
+    <Compile Include="Models\Responses\HttpGetVanityURLResponse.cs" />
+    <Compile Include="Models\Responses\HttpUserResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

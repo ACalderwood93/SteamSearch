@@ -51,14 +51,16 @@
                 }).then(function successCallback(response) {
 
 
-                    service.userData = JSON.parse(response.data).response.players[0];
+                    service.userData = response.data;
                     console.log(service.userData);
-
-                    service.GetRecentPlayedGames(steamId);
+                    service.steamId = service.userData.steamid;
+                    service.GetRecentPlayedGames(service.steamId);
                     // this callback will be called asynchronously
                     // when the response is available
                 }, function errorCallback(response) {
 
+
+                    alert(response.data.ExceptionMessage);
                     // called asynchronously if an error occurs
                     // or server returns response with an error status.
                 });
@@ -70,7 +72,7 @@
                 var service = this;
                 $http({
                     method: 'GET',
-                    url: WebApiUrl + "/api/steam/getownedgames/" + steamId
+                    url: WebApiUrl + "/api/steam/getownedgames/" + service.steamId
                 }).then(function successCallback(response) {
 
 
@@ -112,7 +114,7 @@
                 var service = this;
                 $http({
                     method: 'GET',
-                    url: WebApiUrl + "/api/steam/getFriends/" + steamId
+                    url: WebApiUrl + "/api/steam/getFriends/" + service.steamId
                 }).then(function successCallback(response) {
 
 

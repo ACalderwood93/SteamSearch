@@ -7,6 +7,8 @@ using System.Web.Http;
 using Fluxter.SteamWebAPI;
 using Fluxter.SteamWebAPI.Fluent.General.ISteamUser;
 using Fluxter.SteamWebAPI.Interfaces.General.ISteamUser.GetFriendList;
+using SteamSearchApi.Models;
+using SteamSearchApi.Models.Repositories;
 using SteamSearchApi.Models.Responses;
 
 namespace SteamSearchApi.Controllers
@@ -17,12 +19,14 @@ namespace SteamSearchApi.Controllers
         [Route("api/steam/getuser/{steamId}")]
         public IHttpActionResult GetUser(string steamId)
         {
-            var req = SteamWebAPI.CustomRequest("ISteamUser", "GetPlayerSummaries", "v0002", new { steamids = steamId });
+           // var req = SteamWebAPI.CustomRequest("ISteamUser", "GetPlayerSummaries", "v0002", new { steamids = steamId });
 
-            var responseString = req.GetResponseString(RequestFormat.JSON);
+           // var responseString = req.GetResponseString(RequestFormat.JSON);
             //
 
-            return Ok(responseString);
+            Player player = new SteamRepository().GetUser(steamId);
+
+            return Ok(player);
         }
 
         [Route("api/steam/getrecentgames/{steamId}")]

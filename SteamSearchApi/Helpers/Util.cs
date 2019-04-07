@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace SteamSearchApi.Helpers
@@ -15,6 +16,11 @@ namespace SteamSearchApi.Helpers
             dtDateTime = dtDateTime.AddSeconds(timeStamp).ToLocalTime();
             return dtDateTime;
 
+        }
+        public static bool isValidSteamId(string query)
+        {
+            var regexExp = new Regex(@"[0 - 9]{ 17}");
+            return regexExp.Match(query).Success;
         }
     }
 }

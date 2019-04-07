@@ -1,13 +1,11 @@
 ﻿
 html, body {
     position: relative;
-    min-height: 100%;
     font-size: 12px;
 }
 
 .navbar {
-
-    margin:0;
+    margin: 0;
 }
 
 .jumbo-title {
@@ -35,4 +33,13 @@ html, body {
     cursor: pointer;
 }
 
+.navbar, .jumbotron {
+    border-radius: unset;
+}
 
+
+@media screen and (max-width: 768px) {
+    body .container {
+        width: 100% !important;
+    }
+}
