@@ -6,24 +6,58 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MongoDB;
+using System.Configuration;
+
 
 namespace SteamSearchApi.Models.Repositories
 {
     public class SteamRepository
     {
 
-        public Player GetUser(string steamId)
+        public Player GetUser(string steamId, string ip)
         {
+            var mongoRepo = new MongoRepository<Query>();
             if (!Util.isValidSteamId(steamId)) // before we send this SteamID up in the request we check if its even in a valid format
             {
-                steamId = GetSteamId(steamId);
+                if (mongoRepo.Exists<Player>(x => x.Personaname.ToLower() == steamId.ToLower()))
+                {
+                    steamId = mongoRepo.Get<Player>(x => x.Personaname.ToLower() == steamId.ToLower()).FirstOrDefault().Steamid;
+                }
+                else
+                {
+                    steamId = GetSteamId(steamId);
+                }
+
+
             }
+
 
             var req = SteamWebAPI.CustomRequest("ISteamUser", "GetPlayerSummaries", "v0002", new { steamids = steamId });
 
 
             var response = _HandleResponse<HttpUserResponse>(req);
-            return response.Response.Players.First();
+
+
+
+            var query = new Query()
+            {
+                SteamId = steamId,
+                IpAddress = ip,
+                DateCreated = DateTime.Now
+            };
+
+            mongoRepo.Insert(query);
+
+            var player = response.Response.Players.First();
+
+            if (!mongoRepo.Exists<Player>(x => x.Steamid == steamId))
+                mongoRepo.Insert(player);
+
+            // have we got this player Already
+
+
+            return player;
         }
         public string GetRecentGames(string steamId)
         {

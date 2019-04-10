@@ -1,13 +1,20 @@
 ﻿using Newtonsoft.Json;
+using SteamSearchApi.Models.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using MongoDB.Bson;
 
 namespace SteamSearchApi.Models
 {
+    [MongoDBCollectionName("Players")]
+    [MongoDBDatabaseName("SteamSearch")]
     public partial class Player
     {
+        public ObjectId _id { get; set; }
+
+
         [JsonProperty("steamid")]
         public string Steamid { get; set; }
 

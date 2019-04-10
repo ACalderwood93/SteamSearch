@@ -19,8 +19,17 @@ namespace SteamSearchApi.Helpers
         }
         public static bool isValidSteamId(string query)
         {
-            var regexExp = new Regex(@"[0 - 9]{ 17}");
-            return regexExp.Match(query).Success;
+            var regexExp = new Regex(@"[0-9]{17}");
+            bool match = regexExp.Match(query).Success;
+            return match;
+        }
+
+        public static object GetAttribute<T>(Type type)
+        {
+            var tType = typeof(T);
+            var att = tType.GetCustomAttributes(type, true).FirstOrDefault();
+            return att ;
+        
         }
     }
 }

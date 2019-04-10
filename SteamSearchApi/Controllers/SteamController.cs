@@ -19,12 +19,14 @@ namespace SteamSearchApi.Controllers
         [Route("api/steam/getuser/{steamId}")]
         public IHttpActionResult GetUser(string steamId)
         {
-           // var req = SteamWebAPI.CustomRequest("ISteamUser", "GetPlayerSummaries", "v0002", new { steamids = steamId });
+            // var req = SteamWebAPI.CustomRequest("ISteamUser", "GetPlayerSummaries", "v0002", new { steamids = steamId });
 
-           // var responseString = req.GetResponseString(RequestFormat.JSON);
+            // var responseString = req.GetResponseString(RequestFormat.JSON);
             //
+            var ip = HttpContext.Current.Request.UserHostAddress;
+            Player player = new SteamRepository().GetUser(steamId, ip);
 
-            Player player = new SteamRepository().GetUser(steamId);
+
 
             return Ok(player);
         }
