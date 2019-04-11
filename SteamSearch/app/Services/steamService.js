@@ -47,6 +47,7 @@
                 var service = this;
 
                 if (steamId != undefined && steamId.length > 0) {
+                    service.friends = [];
                     this.dataLoaded = false;
                     $http({
                         method: 'GET',
@@ -125,7 +126,7 @@
                 }).then(function successCallback(response) {
 
 
-                    service.friends = JSON.parse(response.data).friendslist.friends;
+                    service.friends = response.data;
                     console.log(service.service.friends);
                     // this callback will be called asynchronously
                     // when the response is available

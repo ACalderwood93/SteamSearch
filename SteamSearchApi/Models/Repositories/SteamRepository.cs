@@ -52,7 +52,7 @@ namespace SteamSearchApi.Models.Repositories {
             } else {
 
                 dbPlayer = dbPlayer ?? repo.Get<Player>(x => x.Steamid == steamId).FirstOrDefault(); // get the Player from the DB. 
-                
+
                 // has the user changed their display name
                 if (player.Personaname != dbPlayer.Personaname) {
                     dbPlayer.Personaname = player.Personaname;
@@ -68,19 +68,41 @@ namespace SteamSearchApi.Models.Repositories {
 
             return player;
         }
-        public string GetRecentGames(string steamId) {
+        public List<Player> GetUsers(string[] steamIds) {
 
+            var sSteamIds = "";
+            var t = steamIds.ToString();
 
-            return "";
+            foreach (var id in steamIds) {
+                sSteamIds += id + ",";
+            }
+            var req = SteamWebAPI.CustomRequest("ISteamUser", "GetPlayerSummaries", "v0002", new { steamids = sSteamIds });
+            var response = _HandleResponse<HttpUserResponse>(req);
+            return response.Response.Players.ToList();
+        }
+
+        public List<Game> GetRecentGames(string steamId) {
+
+            var req = SteamWebAPI.CustomRequest("IPlayerService", "GetRecentlyPlayedGames", "v0001", new { steamid = steamId });
+
+            var response = _HandleResponse<HttpRecentlyPlayedGames>(req);
+            return response.Response.Games;
         }
         public string GetOwnedGames(string steamId) {
 
 
             return "";
         }
-        public string GetFriends(string steamId) {
+        public List<Player> GetFriends(string steamId) {
 
-            return "";
+            var req = SteamWebAPI.CustomRequest("ISteamuser", "GetFriendList", "v0001", new { steamId = steamId, relationship = "friend" });
+            var response = _HandleResponse<HttpFriendListResponse>(req);
+
+
+            var steamIds = response.Friendslist.Friends.Select(x => x.Steamid).ToArray();
+            var users = GetUsers(steamIds);
+
+            return users;
         }
         public string GetGamesInCommon(string steamId, string query) {
 

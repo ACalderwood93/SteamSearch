@@ -11,15 +11,15 @@
 
 
         $scope.test = "Hello world";
-        
+
         $scope.steamService = steamService;
         $scope.menuState = "navUser";
 
 
         $scope.init = function () {
 
-          //  if ($scope.steamService.allGames.length < 1)
-             //   $scope.steamService.GetAllGames();
+            //  if ($scope.steamService.allGames.length < 1)
+            //   $scope.steamService.GetAllGames();
         }
 
         $scope.navClicked = function (navId) {
@@ -33,7 +33,9 @@
                     break;
 
                 case "navFriends":
-                    $scope.steamService.GetAllFriends($scope.steamId);
+                    // we dont want to reload this if we have aready done it.
+                    if ($scope.steamService.friends.length < 1)
+                        $scope.steamService.GetAllFriends($scope.steamId);
                     break;
             }
 
