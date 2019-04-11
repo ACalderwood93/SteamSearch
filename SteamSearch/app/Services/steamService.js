@@ -12,7 +12,7 @@
             this.userData = {};
             this.recentGames = [];
             this.ownedGames = [];
-            this.dataLoaded = false;
+            this.dataLoaded = null;
             this.allGames = [];
             this.friends = [];
             this.steamId = "";
@@ -20,6 +20,7 @@
 
 
             this.GetRecentPlayedGames = function (steamId) {
+
 
 
                 var service = this;
@@ -45,25 +46,31 @@
 
                 var service = this;
 
-                $http({
-                    method: 'GET',
-                    url: WebApiUrl + "/api/steam/getuser/" + steamId
-                }).then(function successCallback(response) {
+                if (steamId != undefined && steamId.length > 0) {
+                    this.dataLoaded = false;
+                    $http({
+                        method: 'GET',
+                        url: WebApiUrl + "/api/steam/getuser/" + steamId
+                    }).then(function successCallback(response) {
 
 
-                    service.userData = response.data;
-                    console.log(service.userData);
-                    service.steamId = service.userData.steamid;
-                    service.GetRecentPlayedGames(service.steamId);
-                    // this callback will be called asynchronously
-                    // when the response is available
-                }, function errorCallback(response) {
+                        service.userData = response.data;
+                        console.log(service.userData);
+                        service.steamId = service.userData.steamid;
+                        service.GetRecentPlayedGames(service.steamId);
+                        // this callback will be called asynchronously
+                        // when the response is available
+                    }, function errorCallback(response) {
 
 
-                    alert(response.data.ExceptionMessage);
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                });
+                        alert(response.data.ExceptionMessage);
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                    });
+                } else {
+
+                    M.toast({ html: 'Please enter a steamId or username before search' });
+                }
 
 
             }

@@ -13,11 +13,15 @@ html, body {
     color: white;
     border-radius: 0px;
     background-image: url("https://cdn.uploadvr.com/wp-content/uploads/2016/07/steam-game-image-collage.png");
-    background-size: cover;
+    /*background-image: url("https://images5.alphacoders.com/695/695356.jpg");*/
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
 }
 
     .jumbo-title h1 {
         font-size: 100px;
+        text-shadow: 2px 0 0 #000000, -2px 0 0 #000000, 0 2px 0 #000000, 0 -2px 0 #fff, 1px 1px #000000, -1px -1px 0 #000000, 1px -1px 0 #000000, -1px 1px 0 #000000;
     }
 
 
@@ -28,6 +32,10 @@ html, body {
 .game-card {
 }
 
+.tabs {
+    color: #26a69a !important;
+}
+
 
 .nav-link {
     cursor: pointer;
@@ -35,6 +43,20 @@ html, body {
 
 .navbar, .jumbotron {
     border-radius: unset;
+}
+
+
+.card {
+
+    min-height:250px;
+}
+
+.background {
+    /*background-image: url("https://cdn.uploadvr.com/wp-content/uploads/2016/07/steam-game-image-collage.png");*/
+    background-image: url("https://images5.alphacoders.com/695/695356.jpg") !important;
+    background-repeat: repeat;
+    background-size: cover;
+    
 }
 
 
