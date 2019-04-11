@@ -10,10 +10,13 @@ using MongoDB;
 using System.Configuration;
 
 
-namespace SteamSearchApi.Models.Repositories {
-    public class SteamRepository {
+namespace SteamSearchApi.Models.Repositories
+{
+    public class SteamRepository
+    {
 
-        public Player GetUser(string steamId, string ip) {
+        public Player GetUser(string steamId, string ip)
+        {
             var repo = new MongoRepository<UserQuery>();
 
             Player dbPlayer = null;
@@ -37,7 +40,8 @@ namespace SteamSearchApi.Models.Repositories {
 
 
 
-            var query = new UserQuery() {
+            var query = new UserQuery()
+            {
                 SteamId = steamId,
                 IpAddress = ip,
                 DateCreated = DateTime.Now
@@ -47,14 +51,18 @@ namespace SteamSearchApi.Models.Repositories {
 
             var player = response.Response.Players.First(); // get the player object from Steam
 
-            if (!repo.Exists<Player>(x => x.Steamid == steamId)) { // do we already have a record in the DB for this user
+            if (!repo.Exists<Player>(x => x.Steamid == steamId))
+            { // do we already have a record in the DB for this user
                 repo.Insert(player); // Nope, insert them
-            } else {
+            }
+            else
+            {
 
                 dbPlayer = dbPlayer ?? repo.Get<Player>(x => x.Steamid == steamId).FirstOrDefault(); // get the Player from the DB. 
 
                 // has the user changed their display name
-                if (player.Personaname != dbPlayer.Personaname) {
+                if (player.Personaname != dbPlayer.Personaname)
+                {
                     dbPlayer.Personaname = player.Personaname;
                     repo.Update(dbPlayer);
                 }
@@ -68,12 +76,14 @@ namespace SteamSearchApi.Models.Repositories {
 
             return player;
         }
-        public List<Player> GetUsers(string[] steamIds) {
+        public List<Player> GetUsers(string[] steamIds)
+        {
 
             var sSteamIds = "";
             var t = steamIds.ToString();
 
-            foreach (var id in steamIds) {
+            foreach (var id in steamIds)
+            {
                 sSteamIds += id + ",";
             }
             var req = SteamWebAPI.CustomRequest("ISteamUser", "GetPlayerSummaries", "v0002", new { steamids = sSteamIds });
@@ -81,19 +91,26 @@ namespace SteamSearchApi.Models.Repositories {
             return response.Response.Players.ToList();
         }
 
-        public List<Game> GetRecentGames(string steamId) {
+        public List<Game> GetRecentGames(string steamId)
+        {
 
             var req = SteamWebAPI.CustomRequest("IPlayerService", "GetRecentlyPlayedGames", "v0001", new { steamid = steamId });
 
             var response = _HandleResponse<HttpRecentlyPlayedGames>(req);
             return response.Response.Games;
         }
-        public string GetOwnedGames(string steamId) {
+        public List<Game> GetOwnedGames(string steamId)
+        {
+
+            var req = SteamWebAPI.CustomRequest("IPlayerService", "GetOwnedGames", "v0001", new { steamid = steamId, include_appinfo = 1, include_played_free_games = 1 });
+            var response = _HandleResponse<HttpGetOwnedGamesResponse>(req);
+            return response.Response.Games;
 
 
-            return "";
+
         }
-        public List<Player> GetFriends(string steamId) {
+        public List<Player> GetFriends(string steamId)
+        {
 
             var req = SteamWebAPI.CustomRequest("ISteamuser", "GetFriendList", "v0001", new { steamId = steamId, relationship = "friend" });
             var response = _HandleResponse<HttpFriendListResponse>(req);
@@ -104,12 +121,38 @@ namespace SteamSearchApi.Models.Repositories {
 
             return users;
         }
-        public string GetGamesInCommon(string steamId, string query) {
+        public IEnumerable<long> GetGamesInCommon(List<Player> players)
+        {
+            IEnumerable<long> matchedAppIds = null;
+            var repo = new MongoRepository<Player>();
+            foreach (var player in players)
+            {
 
 
-            return "";
+
+                player.OwnedGames = this.GetOwnedGames(player.Steamid);
+
+                if (player.OwnedGames == null)
+                    continue;
+
+                var appIds = player.OwnedGames.Select(x => x.Appid);
+                if (matchedAppIds == null)
+                {
+                    matchedAppIds = appIds;
+                }
+
+
+                matchedAppIds = matchedAppIds.Intersect(appIds).ToList();
+
+
+
+
+            }
+
+            return matchedAppIds;
         }
-        public string GetSteamId(string username) {
+        public string GetSteamId(string username)
+        {
 
             var req = SteamWebAPI.CustomRequest("ISteamUser", "ResolveVanityURL", "v0001", new { vanityurl = username });
 
@@ -124,7 +167,8 @@ namespace SteamSearchApi.Models.Repositories {
         }
 
 
-        private T _HandleResponse<T>(SteamCustomBuilder request) {
+        private T _HandleResponse<T>(SteamCustomBuilder request)
+        {
             var sResponse = request.GetResponseString(RequestFormat.JSON);
             return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(sResponse);
         }

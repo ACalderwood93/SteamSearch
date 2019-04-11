@@ -7,10 +7,12 @@ using System.Web;
 using MongoDB.Bson;
 using SteamSearchApi.Models.Interfaces;
 
-namespace SteamSearchApi.Models {
+namespace SteamSearchApi.Models
+{
     [MongoDBCollectionName("Players")]
     [MongoDBDatabaseName("SteamSearch")]
-    public partial class Player : IMongoObject {
+    public partial class Player : IMongoObject
+    {
         public ObjectId _id { get; set; }
 
 
@@ -67,5 +69,8 @@ namespace SteamSearchApi.Models {
 
         [JsonProperty("loccityid")]
         public long Loccityid { get; set; }
+
+        
+        public List<Game> OwnedGames { get; set; }
     }
 }

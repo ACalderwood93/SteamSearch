@@ -16,6 +16,7 @@
             this.allGames = [];
             this.friends = [];
             this.steamId = "";
+            this.appsInCommon = [];
 
 
 
@@ -63,8 +64,8 @@
                         // when the response is available
                     }, function errorCallback(response) {
 
+                        M.toast({ html: response.data.ExceptionMessage });
 
-                        alert(response.data.ExceptionMessage);
                         // called asynchronously if an error occurs
                         // or server returns response with an error status.
                     });
@@ -127,7 +128,7 @@
 
 
                     service.friends = response.data;
-                    console.log(service.service.friends);
+
                     // this callback will be called asynchronously
                     // when the response is available
                 }, function errorCallback(response) {
@@ -138,7 +139,28 @@
 
             }
 
+            this.GetGamesInCommon = function () {
 
+                var selectedFriends = this.friends.filter(function (item) {
+                    return item.selected;
+                });
+
+                selectedFriends.push(this.userData);// add yourself to the list;
+
+                var service = this;
+                $http({
+                    method: 'POST',
+                    url: WebApiUrl + "/api/steam/getGamesInCommon",
+                    data: selectedFriends
+
+
+                }).then(function successCallback(response) {
+                    service.appsInCommon = response.data;
+                }, function errorCallback(response) {
+
+                });
+
+            }
 
 
 

@@ -14,9 +14,7 @@ html, body {
     border-radius: 0px;
     background-image: url("https://cdn.uploadvr.com/wp-content/uploads/2016/07/steam-game-image-collage.png");
     /*background-image: url("https://images5.alphacoders.com/695/695356.jpg");*/
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center center;
+    background-size: cover;
 }
 
     .jumbo-title h1 {
@@ -54,6 +52,12 @@ html, body {
 .dark-card {
     background-color: #607d8b !important;
     color: white;
+}
+
+.block-with-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    // don’t forget that .block-with-text can’t be an inline element
 }
 
 @media screen and (max-width: 768px) {
