@@ -5,14 +5,13 @@ using System.Web;
 using MongoDB;
 using SteamSearchApi.Models.Attributes;
 using MongoDB.Bson;
+using SteamSearchApi.Models.Interfaces;
 
-namespace SteamSearchApi.Models
-{
+namespace SteamSearchApi.Models {
     [MongoDBCollectionName("QueryHistory")]
     [MongoDBDatabaseName("SteamSearch")]
 
-    public class Query
-    {
+    public class UserQuery : IMongoObject {
 
         public ObjectId _id { get; set; }
 

@@ -210,8 +210,11 @@
     </Compile>
     <Compile Include="Helpers\Util.cs" />
     <Compile Include="Models\Attributes\Attributes.cs" />
+    <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\Interfaces\IMongoObject.cs" />
     <Compile Include="Models\Player.cs" />
-    <Compile Include="Models\Query.cs" />
+    <Compile Include="Models\Responses\HttpRecentlyPlayedGames.cs" />
+    <Compile Include="Models\UserQuery.cs" />
     <Compile Include="Models\Repositories\MongoRepository.cs" />
     <Compile Include="Models\Repositories\SteamRepository.cs" />
     <Compile Include="Models\Responses\HttpFriendsListResponse.cs" />
