@@ -3,163 +3,217 @@
 }
 
 <body ng-app="steamSearch" ng-controller="homeController" ng-init="init()">
-    @*<nav class="navbar navbar-expand-sm navbar-dark bg-dark sticky-top">
-            <div class="container">
-                <a class="navbar-brand shadows-font" href="#"><i class="fab fa-steam "> </i>Steam Search</a>
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown" style="display:none;">
-                        <a href="#"
-                           class="nav-link dropdown-toggle"
-                           data-toggle="dropdown">Tools</a>
-                        <div class="dropdown-menu" style="display:none;">
-                            <a href="#" class="dropdown-item">Link 1</a>
-                            <a href="#" class="dropdown-item">Link 2</a>
-                            <a href="#" class="dropdown-item">Link 3</a>
-                        </div>
-                    </li>
-                    <li class="nav-item" style="display:none;">
-                        <a class="nav-link" href="#">Play With Friends</a>
-                    </li>
-                    <li class="nav-item" style="display:none;">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-                <form class="form-inline ml-auto">
-                    <input type="text" class="form-control mr-sm-2" placeholder="Find By Username or SteamId..." ng-model="steamId">
-                    <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
-                </form>
-            </div>
-        </nav>*@
-    <nav class="navbar navbar-expand-lg navbar-expand-sm navbar-dark bg-dark">
-        <div class="container">
-            <a class="navbar-brand shadows-font" href="#"><i class="fab fa-steam "> </i>Steam Search</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown" style="display:none;">
-                        <a href="#"
-                           class="nav-link dropdown-toggle"
-                           data-toggle="dropdown">Tools</a>
-                        <div class="dropdown-menu" style="display:none;">
-                            <a href="#" class="dropdown-item">Link 1</a>
-                            <a href="#" class="dropdown-item">Link 2</a>
-                            <a href="#" class="dropdown-item">Link 3</a>
-                        </div>
-                    </li>
-                    <li class="nav-item" style="display:none;">
-                        <a class="nav-link" href="#">Play With Friends</a>
-                    </li>
-                    <li class="nav-item" style="display:none;">
-                        <a class="nav-link" href="#">Contact</a>
-                    </li>
-                </ul>
-                <form class="form-inline ml-auto">
-                    <input type="text" class="form-control mr-sm-2" placeholder="Find By Username or SteamId..." ng-model="steamService.steamId">
-                    <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
-                </form>
-            </div>
+    <nav class="show-on-small hide-on-med-and-up"> 
+        <div class="nav-wrapper  ">
+            <a href="#!" class="brand-logo shadows-font">Steam Search</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
         </div>
     </nav>
 
-    <div class="jumbotron  text-center jumbo-title">
-        <h1 class="shadows-font">Steam Search <i class="fab fa-steam"></i></h1>
-        <hr />
-        <div class="container">
-            <div class="input-group mb-3">
-                <input class="form-control"
-                       type="text"
-                       placeholder="Find By Username or SteamId..." ng-model="steamService.steamId" />
-                <div class="input-group-append">
-                    <button class="btn bg-dark" style="color:white" type="button" ng-click="steamService.GetSteamUserInfo(steamService.steamId)">Search</button>
+    <ul class="sidenav" id="mobile-demo">
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img src="~/Content/camera-lens-2115826.jpg">
                 </div>
+                <a href="#user"><img class="circle" src="{{steamService.userData.avatarfull}}"></a>
+                <a href="#name"><span class="white-text name">{{steamService.userData.realname}}</span></a>
+
+            </div>
+        </li>
+        <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+        <li><a href="#!">Second Link</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
+
+
+    <div class="jumbotron  text-center jumbo-title">
+        <h1 id="title" class="shadows-font">Steam Search <i class="fab fa-steam"></i></h1>
+
+        <div class="container">
+            <div class="row s12">
+                <form ng-submit="steamService.GetSteamUserInfo(steamService.steamId)">
+                    <input type="text" style="color:white" id="search"
+                           placeholder="Find By Username or SteamId..." ng-model="steamService.steamId" />
+                    <button class="waves-effect waves-light btn">Search</button>
+
+                </form>
             </div>
         </div>
     </div>
-
-    <div class="container content-container">
-
-        <div class="row mb-3" ng-show="steamService.dataLoaded == true">
-            <ul class="nav nav-tabs w-100">
-                <li class="nav-item">
-                    <a class="nav-link " id="navUser" ng-class="menuState == 'navUser' ? 'active' : ''  " ng-click="navClicked('navUser')">User</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="navRecent" ng-class="menuState == 'navRecent' ? 'active' : ''  " ng-click="navClicked('navRecent')">Recent Games</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" id="navFriends" ng-class="menuState == 'navFriends' ? 'active' : ''  " ng-click="navClicked('navFriends')">Friends</a>
-                </li>
-            </ul>
-
-
-        </div>
-        <div class="h-100" ng-switch="menuState" ng-show="steamService.dataLoaded == true">
-
-            <div class="row w-100" ng-switch-when="navRecent">
-                <div class="col-md-4 mb-3" ng-repeat="game in steamService.recentGames">
-                    <div class="card game-card ">
-                        <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/{{game.appid}}/header.jpg" alt="">
-                        <div class="card-body">
-                            <h4 class="card-title">{{game.name}}</h4>
-                            <h6 class="card-title">
-                                Time Played 2 Weeks : {{(game.playtime_2weeks / 60).toFixed(2)}} Hours
-                            </h6>
-                            <h6 class="card-title">
-                                Time Played : {{(game.playtime_forever / 60).toFixed(2)}} Hours
-                            </h6>
-
-                            <a class="btn btn-outline-primary" href="#">Read More</a>
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-            <div class="w-100" ng-switch-when="navUser">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img src="{{steamService.userData.avatarfull}}" alt="avatar" />
-                    </div>
-                    <div class="col-md-9">
-                        <h4>Username : <a href="{{steamService.userData.profileurl}}" target="_blank">{{steamService.userData.personaname}}</a></h4>
-                        <h4>Name : {{steamService.userData.realname}}</h4>
-                        <h4>{{steamService.ownedGames.length}} Games Owned</h4>
-                    </div>
-                </div>
-                <h4 class="mt-3">Owned Games</h4>
-                <div class="row mt-3">
-                    <div class="col-md-4 mb-3" ng-repeat="game in steamService.ownedGames | orderBy:'-playtime_forever'" ng-show="game.playtime_forever > 0">
-                        <div class="card game-card h-100">
-                            <img class="card-img-top img-fluid" src="https://steamcdn-a.akamaihd.net/steam/apps/{{game.appid}}/header.jpg" alt="">
-                            <div class="card-body">
-                                <h4 class="card-title">{{game.name}}</h4>
-                                <h6 class="card-title">
-                                    Time Played : {{(game.playtime_forever / 60).toFixed(2)}} Hours
-                                </h6>
-
-                                <a class="btn btn-outline-primary" href="https://store.steampowered.com/app/{{game.appid}}/" target="_blank">View in Store</a>
+    <div style="min-height:84vh; ">
+        <div class="container" ng-show="steamService.dataLoaded !=null">
+            <div class="valign-wrapper center-align row " style="min-height:84vh; " ng-show="steamService.dataLoaded == false">
+                <div class="col s12">
+                    <div class="preloader-wrapper big active ">
+                        <div class="spinner-layer spinner-blue-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div><div class="gap-patch">
+                                <div class="circle"></div>
+                            </div><div class="circle-clipper right">
+                                <div class="circle"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row" ng-switch-when="navFriends">
-                Friends
+
+            <div class="row mb-3" ng-show="steamService.dataLoaded == true">
+                <ul class="tabs">
+                    <li class="tab col s3">
+                        <a class="nav-link " id="navUser" ng-class="menuState == 'navUser' ? 'active' : ''  " ng-click="navClicked('navUser')">User</a>
+                    </li>
+                    <li class="tab col s3">
+                        <a class="nav-link" id="navRecent" ng-class="menuState == 'navRecent' ? 'active' : ''  " ng-click="navClicked('navRecent')">Recent Games</a>
+                    </li>
+                    <li class="tab col s3">
+                        <a class="nav-link" id="navFriends" ng-class="menuState == 'navFriends' ? 'active' : ''  " ng-click="navClicked('navFriends')">Friends</a>
+                    </li>
+                </ul>
+
+
+            </div>
+            <div ng-switch="menuState" ng-show="steamService.dataLoaded == true">
+
+                <div class="row" ng-switch-when="navRecent">
+
+                    <div class="col s12 m3" ng-repeat="game in steamService.recentGames">
+                        <div class="card hoverable">
+                            <div class="card-image">
+                                <img class="materialboxed" src="https://steamcdn-a.akamaihd.net/steam/apps/{{game.appid}}/header.jpg">
+                            </div>
+                            <div class="card-content">
+
+                                <p>
+                                    Time Played 2 Weeks : {{(game.playtime_2weeks / 60).toFixed(2)}} Hours
+                                </p>
+                                <p>
+                                    Time Played : {{(game.playtime_forever / 60).toFixed(2)}} Hours
+                                </p>
+                            </div>
+                            <div class="card-action">
+                                <a href="https://store.steampowered.com/app/{{game.appid}}/" target="_blank">View in store</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <div ng-switch-when="navUser">
+                    <div class="row card hoverable" style="padding:25px">
+                        <div class="col s12 m3">
+                            <div class="card-image">
+                                <img src="{{steamService.userData.avatarfull}}" alt="avatar" />
+                            </div>
+                        </div>
+                        <div class="col s12 m9">
+                            <div class="card-content">
+                                <h4>Username : <a href="{{steamService.userData.profileurl}}" target="_blank">{{steamService.userData.personaname}}</a></h4>
+                                <h4>Name : {{steamService.userData.realname}}</h4>
+                                <h4>{{steamService.ownedGames.length}} Games Owned</h4>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <h4 class="mt-3">Owned Games</h4>
+                    <input type="text" placeholder="Filter Games" ng-model="steamService.OwnedGamesFilter" />
+                    <div class="row">
+
+                        <div class="col s12 m3" ng-repeat="game in steamService.ownedGames | filter:{ name: steamService.OwnedGamesFilter } |orderBy:'-playtime_forever'" ng-show="game.playtime_forever > 0">
+                            <div class="card hoverable">
+                                <div class="card-image">
+                                    <img class="materialboxed" src="https://steamcdn-a.akamaihd.net/steam/apps/{{game.appid}}/header.jpg">
+                                </div>
+                                <div class="card-content">
+
+                                    <p>
+                                        Time Played : {{(game.playtime_forever / 60).toFixed(2)}} Hours
+                                    </p>
+                                </div>
+                                <div class="card-action">
+                                    <a href="https://store.steampowered.com/app/{{game.appid}}/" target="_blank">View in store</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row center-align" ng-switch-when="navFriends">
+
+                    <div class=" col l3  s12 m6">
+                        <input type="text" placeholder="Filter Friends" ng-model="steamService.friendFilter" />
+                        <button class="waves-effect waves-light btn" ng-click="steamService.GetGamesInCommon()">Find Games In Common</button>
+                        <div class="col s12 m12 card dark-card hoverable valign-wrapper" ng-repeat="friend in steamService.friends | filter:{ personaname: steamService.friendFilter }|filter:{ selected: '!' + true}" style="margin-left:2px; margin-right:2px; height:50px;" title="{{friend.personaname}}">
+                            <div class="col m2 s6"><img src="{{friend.avatar}}"></div>
+                            <div class="col m5 s6 block-with-text ">{{friend.personaname}}</div>
+                            <div class="col m5 s6">
+                                <div class="switch">
+                                    <label>
+
+                                        <input type="checkbox" ng-model="friend.selected">
+                                        <span class="lever"></span>
+
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col l9 s12 m6">
+                        <div class="row">
+                            <h6 style="margin-bottom:60px">Selected Friends</h6>
+                            <div class="col s12 m12 l4 xl3 card dark-card hoverable valign-wrapper" ng-repeat="friend in steamService.friends | filter:{ selected: true }" style="margin-left:2px; margin-right:2px; height:50px;" title="{{friend.personaname}}">
+                                <div class="col m2 s6" style="padding-left:0"><img src="{{friend.avatar}}"></div>
+                                <div class="col m5 s6 truncate ">{{friend.personaname}}</div>
+                                <div class="col m5 s6">
+                                    <div class="switch">
+                                        <label>
+
+                                            <input type="checkbox" ng-model="friend.selected">
+                                            <span class="lever"></span>
+
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <h6>Games In Common {{steamService.appsInCommon.length}}</h6>
+                            <div class="col s12 m6 l4 xl3" style="margin-top:5px;margin-bottom:5px;" ng-repeat="appid in steamService.appsInCommon">
+                                <a href="https://store.steampowered.com/app/{{appid}}/" target="_blank"> <img src="https://steamcdn-a.akamaihd.net/steam/apps/{{appid}}/header.jpg" style="max-width:100%" /></a>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
             </div>
 
 
-
         </div>
-
-
     </div>
 
-
-
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large">
+            <i class="large material-icons">menu</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating " href="#search"><i class="material-icons">search</i></a></li>
+            <li><a class="btn-floating blue" href="#title"><i class="material-icons">arrow_upward</i></a></li>
+        </ul>
+    </div>
 
 </body>
 

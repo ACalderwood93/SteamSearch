@@ -10,10 +10,10 @@
     @Scripts.Render("~/bundles/modernizr")
 
 
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
-          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
-          crossorigin="anonymous" />
+    @*<link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB"
+        crossorigin="anonymous" />*@
 
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
@@ -21,14 +21,29 @@
           crossorigin="anonymous" />
 
     <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">*@
-
+    <link rel="stylesheet" href="~/Content/materialize.css">
 </head>
 <body>
 
     @RenderBody()
 
-
+    <footer class="page-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col l12 s12">
+                    <h5 class="white-text">Steam Search <i class="fab fa-steam"></i></h5>
+                    <p class="grey-text text-lighten-4">Project Made to make us of Steam API, Angular JS and MongoDB</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <div class="container">
+                © 2019 Andrew Calderwood
+            </div>
+        </div>
+    </footer>
 
 
     @Scripts.Render("~/bundles/angular")
@@ -45,12 +60,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
             integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
             crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
-            integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
-            crossorigin="anonymous"></script>
-    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>*@
+    @*<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script type="text/javascript">
 
 
+
+
+        $(document).ready(function () {
+            $('.tabs').tabs();
+            $('.materialboxed').materialbox();
+            M.AutoInit();
+            $('.fixed-action-btn').floatingActionButton();
+        });
+
+
+
+    </script>
 
 </body>
 </html>

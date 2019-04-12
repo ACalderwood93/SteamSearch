@@ -12,14 +12,16 @@
             this.userData = {};
             this.recentGames = [];
             this.ownedGames = [];
-            this.dataLoaded = false;
+            this.dataLoaded = null;
             this.allGames = [];
             this.friends = [];
             this.steamId = "";
+            this.appsInCommon = [];
 
 
 
             this.GetRecentPlayedGames = function (steamId) {
+
 
 
                 var service = this;
@@ -45,25 +47,32 @@
 
                 var service = this;
 
-                $http({
-                    method: 'GET',
-                    url: WebApiUrl + "/api/steam/getuser/" + steamId
-                }).then(function successCallback(response) {
+                if (steamId != undefined && steamId.length > 0) {
+                    service.friends = [];
+                    this.dataLoaded = false;
+                    $http({
+                        method: 'GET',
+                        url: WebApiUrl + "/api/steam/getuser/" + steamId
+                    }).then(function successCallback(response) {
 
 
-                    service.userData = response.data;
-                    console.log(service.userData);
-                    service.steamId = service.userData.steamid;
-                    service.GetRecentPlayedGames(service.steamId);
-                    // this callback will be called asynchronously
-                    // when the response is available
-                }, function errorCallback(response) {
+                        service.userData = response.data;
+                        console.log(service.userData);
+                        service.steamId = service.userData.steamid;
+                        service.GetRecentPlayedGames(service.steamId);
+                        // this callback will be called asynchronously
+                        // when the response is available
+                    }, function errorCallback(response) {
 
+                        M.toast({ html: response.data.ExceptionMessage });
 
-                    alert(response.data.ExceptionMessage);
-                    // called asynchronously if an error occurs
-                    // or server returns response with an error status.
-                });
+                        // called asynchronously if an error occurs
+                        // or server returns response with an error status.
+                    });
+                } else {
+
+                    M.toast({ html: 'Please enter a steamId or username before search' });
+                }
 
 
             }
@@ -118,8 +127,8 @@
                 }).then(function successCallback(response) {
 
 
-                    service.friends = JSON.parse(response.data).friendslist.friends;
-                    console.log(service.service.friends);
+                    service.friends = response.data;
+
                     // this callback will be called asynchronously
                     // when the response is available
                 }, function errorCallback(response) {
@@ -130,7 +139,30 @@
 
             }
 
+            this.GetGamesInCommon = function () {
 
+                var selectedFriends = this.friends.filter(function (item) {
+                    return item.selected;
+                });
+
+                selectedFriends.push(this.userData);// add yourself to the list;
+                M.toast({ html: "Searching..." });
+                var service = this;
+                $http({
+                    method: 'POST',
+                    url: WebApiUrl + "/api/steam/getGamesInCommon",
+                    data: selectedFriends
+
+
+                }).then(function successCallback(response) {
+                    service.appsInCommon = response.data;
+                    M.toast({ html: `${service.appsInCommon.length} Game(s) Found in Common!!!` });
+
+                }, function errorCallback(response) {
+
+                });
+
+            }
 
 
 

@@ -75,18 +75,19 @@ namespace SteamSearchApi.Controllers
         public IHttpActionResult GetFriends(string steamId)
         {
 
-            // var req = new GetFriendListRequest(WebConfigurationManager.AppSettings["steamApiKey"]);
-            // var req = SteamWebAPI.("ISteamuser", "GetFriendList", "v0001", new { steamId = steamId, relationship = "friend" });
+            var repo = new SteamRepository();
+            var friends = repo.GetFriends(steamId);
 
-            //  var friendListBuilder = new GetFriendListBuilder(req);
-            // friendListBuilder.
+            return Ok(friends);
+        }
+        [Route("api/steam/getGamesInCommon")]
+        [HttpPost]
+        public IHttpActionResult GetGamesInCommon([FromBody] List<Player> data)
+        {
+            var repo = new SteamRepository();
 
-            //  var responseString = req.GetResponseString(RequestFormat.JSON);
+            return  Ok(repo.GetGamesInCommon(data));
 
-            //HttpFriendListResponse response = Newtonsoft.Json.JsonConvert.DeserializeObject<HttpFriendListResponse>(responseString);
-
-            //return Ok(responseString);
-            return Ok();
         }
 
     }
