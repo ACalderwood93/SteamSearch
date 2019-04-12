@@ -20,6 +20,7 @@
 
             //  if ($scope.steamService.allGames.length < 1)
             //   $scope.steamService.GetAllGames();
+            $scope.steamService.GetTopGames();
         }
 
         $scope.navClicked = function (navId) {

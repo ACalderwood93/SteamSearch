@@ -17,6 +17,7 @@
             this.friends = [];
             this.steamId = "";
             this.appsInCommon = [];
+            this.topGames = [];
 
 
 
@@ -138,7 +139,6 @@
                 });
 
             }
-
             this.GetGamesInCommon = function () {
 
                 var selectedFriends = this.friends.filter(function (item) {
@@ -157,6 +157,23 @@
                 }).then(function successCallback(response) {
                     service.appsInCommon = response.data;
                     M.toast({ html: `${service.appsInCommon.length} Game(s) Found in Common!!!` });
+
+                }, function errorCallback(response) {
+
+                });
+
+            }
+            this.GetTopGames = function () {
+                var service = this;
+                $http({
+                    method: 'GET',
+                    url: WebApiUrl + "/api/steam/gettopgames"
+                }).then(function successCallback(response) {
+                    var games = JSON.parse(response.data);
+
+                    for (var prop in games) {
+                        service.topGames.push(games[prop]);
+                    }
 
                 }, function errorCallback(response) {
 

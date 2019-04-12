@@ -4,7 +4,7 @@
 
 <body ng-app="steamSearch" ng-controller="homeController" ng-init="init()">
 
-    <nav class="show-on-small hide-on-med-and-up"> 
+    <nav class="show-on-small hide-on-med-and-up">
         <div class="nav-wrapper  ">
             <a href="#!" class="brand-logo shadows-font">Steam Search</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -45,9 +45,9 @@
             </div>
         </div>
     </div>
-    <div style="min-height:84vh; ">
+    <div flex>
         <div class="container" ng-show="steamService.dataLoaded !=null">
-            <div class="valign-wrapper center-align row " style="min-height:84vh; " ng-show="steamService.dataLoaded == false">
+            <div class="valign-wrapper center-align row " flex ng-show="steamService.dataLoaded == false">
                 <div class="col s12">
                     <div class="preloader-wrapper big active ">
                         <div class="spinner-layer spinner-blue-only">
@@ -198,6 +198,68 @@
                 </div>
 
 
+
+            </div>
+
+
+        </div>
+        <div class="container" ng-show="steamService.dataLoaded ==null">
+
+            <div class="row">
+                <h6>Top Games</h6>
+                @*<ul class="collection">
+                        <li class="collection-item" ng-repeat="game in steamService.topGames">
+                            {{game.name}}
+                            <ul class="collection">
+                                <li class="collection-item">{{game.developer}}</li>
+                                <li class="collection-item">{{game.publisher}}</li>
+                                <li class="collection-item">{{game.score_rank}}</li>
+                                <li class="collection-item">{{game}}</li>
+                            </ul>
+                        </li>
+
+                    </ul>*@
+
+                <div class="col s12 m4 xl4" ng-repeat="game in steamService.topGames | orderBy: '-positive' | limitTo:10">
+                    <div class="card" style="height:300px">
+                        <div class="card-image waves-effect waves-block waves-light">
+                            <img src="https://steamcdn-a.akamaihd.net/steam/apps/{{game.appid}}/header.jpg">
+                        </div>
+                        <div class="card-content">
+
+                            <div class="col s9"><p>{{game.name}}</p></div>
+                            <div class="col s3"><i class="material-icons right activator">more_vert</i></div>
+
+                        </div>
+                        <div class="card-action">
+                            <div class="col s4 valign-wrapper">
+                                <span id="text3" style="color:lightgreen">
+                                    {{game.positive}}
+                                    <i class="material-icons">
+                                        thumb_up
+                                    </i>
+                                </span>
+                            </div>
+                            <div class="col s4 valign-wrapper">
+                                <span id="text3" style="color:darkred">
+                                    {{game.negative}}
+                                    <i class="material-icons">
+                                        thumb_down
+                                    </i>
+                                </span>
+                            </div>
+                            <div class="col s4">
+                                <i class="material-icons">
+                                    attach_money
+                                </i>
+                            </div>
+                        </div>
+                        <div class="card-reveal">
+                            <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+                            <p>Here is some more information about this product that is only revealed once clicked on.</p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
