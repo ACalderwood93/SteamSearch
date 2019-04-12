@@ -4,16 +4,11 @@
 
 <body ng-app="steamSearch" ng-controller="homeController" ng-init="init()">
 
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#!" class="brand-logo shadows-font">Steam Search<i class="fab fa-steam"></i> </a>
+    <nav class="show-on-small hide-on-med-and-up"> 
+        <div class="nav-wrapper  ">
+            <a href="#!" class="brand-logo shadows-font">Steam Search</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="sass.html">Sass</a></li>
-                <li><a href="badges.html">Components</a></li>
-                <li><a href="collapsible.html">Javascript</a></li>
-                <li><a href="mobile.html">Mobile</a></li>
-            </ul>
+
         </div>
     </nav>
 
@@ -37,12 +32,12 @@
 
 
     <div class="jumbotron  text-center jumbo-title">
-        <h1 class="shadows-font">Steam Search <i class="fab fa-steam"></i></h1>
+        <h1 id="title" class="shadows-font">Steam Search <i class="fab fa-steam"></i></h1>
 
         <div class="container">
             <div class="row s12">
                 <form ng-submit="steamService.GetSteamUserInfo(steamService.steamId)">
-                    <input type="text" style="color:white"
+                    <input type="text" style="color:white" id="search"
                            placeholder="Find By Username or SteamId..." ng-model="steamService.steamId" />
                     <button class="waves-effect waves-light btn">Search</button>
 
@@ -151,10 +146,10 @@
                 </div>
                 <div class="row center-align" ng-switch-when="navFriends">
 
-                    <div class=" col m3  s12">
+                    <div class=" col l3  s12 m6">
                         <input type="text" placeholder="Filter Friends" ng-model="steamService.friendFilter" />
-
-                        <div class="col s12 m12 card dark-card hoverable valign-wrapper" ng-repeat="friend in steamService.friends | filter:{ personaname: steamService.friendFilter }" style="margin-left:2px; margin-right:2px; height:50px;" title="{{friend.personaname}}">
+                        <button class="waves-effect waves-light btn" ng-click="steamService.GetGamesInCommon()">Find Games In Common</button>
+                        <div class="col s12 m12 card dark-card hoverable valign-wrapper" ng-repeat="friend in steamService.friends | filter:{ personaname: steamService.friendFilter }|filter:{ selected: '!' + true}" style="margin-left:2px; margin-right:2px; height:50px;" title="{{friend.personaname}}">
                             <div class="col m2 s6"><img src="{{friend.avatar}}"></div>
                             <div class="col m5 s6 block-with-text ">{{friend.personaname}}</div>
                             <div class="col m5 s6">
@@ -169,12 +164,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col m7 s12">
+                    <div class="col l9 s12 m6">
                         <div class="row">
-                            <h6>Selected Friends</h6>
-                            <div class="col s12 m3 card dark-card hoverable valign-wrapper" ng-repeat="friend in steamService.friends | filter:{ selected: true }" style="margin-left:2px; margin-right:2px; height:50px;" title="{{friend.personaname}}">
+                            <h6 style="margin-bottom:60px">Selected Friends</h6>
+                            <div class="col s12 m12 l4 xl3 card dark-card hoverable valign-wrapper" ng-repeat="friend in steamService.friends | filter:{ selected: true }" style="margin-left:2px; margin-right:2px; height:50px;" title="{{friend.personaname}}">
                                 <div class="col m2 s6" style="padding-left:0"><img src="{{friend.avatar}}"></div>
-                                <div class="col m5 s6 block-with-text ">{{friend.personaname}}</div>
+                                <div class="col m5 s6 truncate ">{{friend.personaname}}</div>
                                 <div class="col m5 s6">
                                     <div class="switch">
                                         <label>
@@ -190,7 +185,7 @@
                         </div>
                         <div class="row">
                             <h6>Games In Common {{steamService.appsInCommon.length}}</h6>
-                            <div class="col s12 m4" style="margin-top:5px;margin-bottom:5px;" ng-repeat="appid in steamService.appsInCommon">
+                            <div class="col s12 m6 l4 xl3" style="margin-top:5px;margin-bottom:5px;" ng-repeat="appid in steamService.appsInCommon">
                                 <a href="https://store.steampowered.com/app/{{appid}}/" target="_blank"> <img src="https://steamcdn-a.akamaihd.net/steam/apps/{{appid}}/header.jpg" style="max-width:100%" /></a>
 
                             </div>
@@ -198,9 +193,7 @@
 
                         </div>
                     </div>
-                    <div class="col m2 s12">
-                        <button class="waves-effect waves-light btn" ng-click="steamService.GetGamesInCommon()">Find Games In Common</button>
-                    </div>
+
 
                 </div>
 
@@ -212,7 +205,15 @@
         </div>
     </div>
 
-
+    <div class="fixed-action-btn">
+        <a class="btn-floating btn-large">
+            <i class="large material-icons">menu</i>
+        </a>
+        <ul>
+            <li><a class="btn-floating " href="#search"><i class="material-icons">search</i></a></li>
+            <li><a class="btn-floating blue" href="#title"><i class="material-icons">arrow_upward</i></a></li>
+        </ul>
+    </div>
 
 </body>
 

@@ -146,7 +146,7 @@
                 });
 
                 selectedFriends.push(this.userData);// add yourself to the list;
-
+                M.toast({ html: "Searching..." });
                 var service = this;
                 $http({
                     method: 'POST',
@@ -156,6 +156,8 @@
 
                 }).then(function successCallback(response) {
                     service.appsInCommon = response.data;
+                    M.toast({ html: `${service.appsInCommon.length} Game(s) Found in Common!!!` });
+
                 }, function errorCallback(response) {
 
                 });
