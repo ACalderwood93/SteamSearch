@@ -158,6 +158,7 @@
     <Content Include="Content\camera-lens-2115826.jpg" />
     <Content Include="Content\materialize.css" />
     <Content Include="Content\steamBackGround.jpg" />
+    <Content Include="Content\SteamId.PNG" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

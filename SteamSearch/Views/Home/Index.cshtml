@@ -4,7 +4,7 @@
 
 <body ng-app="steamSearch" ng-controller="homeController" ng-init="init()">
 
-    <nav class="show-on-small hide-on-med-and-up"> 
+    <nav class="show-on-small hide-on-med-and-up">
         <div class="nav-wrapper  ">
             <a href="#!" class="brand-logo shadows-font">Steam Search</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
@@ -16,7 +16,7 @@
         <li>
             <div class="user-view">
                 <div class="background">
-                    <img src="~/Content/camera-lens-2115826.jpg">
+
                 </div>
                 <a href="#user"><img class="circle" src="{{steamService.userData.avatarfull}}"></a>
                 <a href="#name"><span class="white-text name">{{steamService.userData.realname}}</span></a>
@@ -45,11 +45,11 @@
             </div>
         </div>
     </div>
-    <div style="min-height:84vh; ">
+    <div>
         <div class="container" ng-show="steamService.dataLoaded !=null">
-            <div class="valign-wrapper center-align row " style="min-height:84vh; " ng-show="steamService.dataLoaded == false">
+            <div class="valign-wrapper center-align row " style="min-height:84vh" flex ng-show="steamService.dataLoaded == false">
                 <div class="col s12">
-                    <div class="preloader-wrapper big active ">
+                    <div class="preloader-wrapper big active">
                         <div class="spinner-layer spinner-blue-only">
                             <div class="circle-clipper left">
                                 <div class="circle"></div>
@@ -198,6 +198,76 @@
                 </div>
 
 
+
+            </div>
+
+
+        </div>
+        <div class="container " ng-show="steamService.dataLoaded ==null">
+
+            <div class="row card" style=" color:#26a69a;">
+
+                <div class="col s12 shadows-font" style="font-size:22px;">
+                    <h4 class="shadows-font">How to use SteamSearch</h4>
+
+
+                    <p>
+                        You can find your SteamID by Browsing to the {Username} > PROFILE in the top tab menu of the Steam App
+
+
+                    </p>
+                    <div class="row col s12 text-center">
+                        <img src="~/Content/Steamid.png" />
+
+                    </div>
+
+                    <p>You should then be able to copy the large 17 Digit Number from the URL in the Steam Address bar. This is your SteamID</p>
+
+                    <p>
+                        Due to the wacky in which steams username system works. Searching initially by username might not provide the correct account.
+                        It is best to first Search by your SteamID. From then on you can search using your DisplayName (providing you don't change it).
+
+                    </p>
+                    <p>
+                        I Will look into better ways of implementing this search. However for now this is the best soloution.
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <h3 class="shadows-font" style="color:#26a69a;">Featured Games</h3>
+
+
+                <div class="col  s12 m12 l12 xl4" ng-repeat="game in steamService.featuredGames">
+                    <div class="card">
+                        <div class="card-image activator">
+                            <img src="https://steamcdn-a.akamaihd.net/steam/apps/{{game.id}}/header.jpg">
+                        </div>
+                        <div class="card-content">
+
+                            <div class="row" style="max-height:30%">
+                                <div class="col s12">{{game.description}}</div>
+                            </div>
+
+                        </div>
+                        <div class="card-action" style="padding-bottom:5px;">
+
+                            <div class="row valign-wrapper">
+
+                                <div class="col s6" style="font-size:24px">
+
+                                    <i class="fas fa-pound-sign"></i> {{(game.final_price/100) > 0 ? (game.final_price/100) : "Free" }}
+                                    <span class="btn" style="cursor:default; background-color:#95f442" ng-show="game.discounted">-{{game.discount_percent}}%</span>
+                                </div>
+                                <div class="col s6"><a class="waves-effect waves-light btn right" href="https://store.steampowered.com/app/{{game.id}}/" target="_blank">Buy</a></div>
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
 
             </div>
 
