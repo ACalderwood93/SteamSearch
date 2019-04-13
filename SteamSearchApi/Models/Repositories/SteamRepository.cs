@@ -151,7 +151,7 @@ namespace SteamSearchApi.Models.Repositories {
         public async Task<string> GetTopGamesAsync() {
 
             var client = new HttpClient();
-            var responseString = await client.GetStringAsync("http://steamspy.com/api.php?request=top100in2weeks");
+            var responseString = await client.GetStringAsync("https://store.steampowered.com/api/featured/?cc=%22GBP%22&l=%22EN%22");
             return responseString;
         }
 

@@ -17,7 +17,7 @@
             this.friends = [];
             this.steamId = "";
             this.appsInCommon = [];
-            this.topGames = [];
+            this.featuredGames = [];
 
 
 
@@ -169,11 +169,10 @@
                     method: 'GET',
                     url: WebApiUrl + "/api/steam/gettopgames"
                 }).then(function successCallback(response) {
-                    var games = JSON.parse(response.data);
-
-                    for (var prop in games) {
-                        service.topGames.push(games[prop]);
-                    }
+                    var games = JSON.parse(response.data)["featured_win"];
+                    service.featuredGames = games;
+                    
+                    console.log(service.featuredGames);
 
                 }, function errorCallback(response) {
 
