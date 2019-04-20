@@ -37,6 +37,8 @@
                     // we dont want to reload this if we have aready done it.
                     if ($scope.steamService.friends.length < 1)
                         $scope.steamService.GetAllFriends($scope.steamId);
+
+                    
                     break;
             }
 

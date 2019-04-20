@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using Fluxter.SteamWebAPI;
 using System.Web.Http.Cors;
+using SteamSearchApi.Controllers;
 
 namespace SteamSearchApi
 {
@@ -12,16 +13,24 @@ namespace SteamSearchApi
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-
+            _RegisterConsumers();
             // Web API routes
             config.MapHttpAttributeRoutes();
             config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
+            
             SteamWebAPI.SetGlobalKey("5F88169B0962B766917B9766FE1B1372");
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+        }
+
+
+        private static void _RegisterConsumers()
+        {
+
         }
     }
 }

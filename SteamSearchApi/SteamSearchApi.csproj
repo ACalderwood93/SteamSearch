@@ -209,8 +209,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Util.cs" />
+    <Compile Include="Models\AppDetails.cs" />
     <Compile Include="Models\Attributes\Attributes.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\Interfaces\ICatagory.cs" />
     <Compile Include="Models\Interfaces\IMongoObject.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Responses\HTTPGetOwnedGamesResponse.cs" />

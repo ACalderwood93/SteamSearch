@@ -9,28 +9,27 @@ using Fluxter.SteamWebAPI;
 using Fluxter.SteamWebAPI.Fluent.General.ISteamUser;
 using Fluxter.SteamWebAPI.Interfaces.General.ISteamUser.GetFriendList;
 using SteamSearchApi.Models;
+using SteamSearchApi.Models.Interfaces;
 using SteamSearchApi.Models.Repositories;
 using SteamSearchApi.Models.Responses;
 
-namespace SteamSearchApi.Controllers {
-    public class SteamController : ApiController {
+namespace SteamSearchApi.Controllers
+{
+    public class SteamController : ApiController
+    {
 
         [Route("api/steam/getuser/{steamId}")]
-        public IHttpActionResult GetUser(string steamId) {
-            // var req = SteamWebAPI.CustomRequest("ISteamUser", "GetPlayerSummaries", "v0002", new { steamids = steamId });
+        public IHttpActionResult GetUser(string steamId)
+        {
 
-            // var responseString = req.GetResponseString(RequestFormat.JSON);
-            //
             var ip = HttpContext.Current.Request.UserHostAddress;
             Player player = new SteamRepository().GetUser(steamId, ip);
-
-
-
             return Ok(player);
         }
 
         [Route("api/steam/getrecentgames/{steamId}")]
-        public IHttpActionResult GetRecentGames(string steamId) {
+        public IHttpActionResult GetRecentGames(string steamId)
+        {
 
             var req = SteamWebAPI.CustomRequest("IPlayerService", "GetRecentlyPlayedGames", "v0001", new { steamid = steamId });
 
@@ -43,20 +42,24 @@ namespace SteamSearchApi.Controllers {
         }
 
         [Route("api/steam/getownedgames/{steamId}")]
-        public IHttpActionResult GetOwnedGames(string steamId) {
+        public IHttpActionResult GetOwnedGames(string steamId)
+        {
 
-            var req = SteamWebAPI.CustomRequest("IPlayerService", "GetOwnedGames", "v0001", new { steamid = steamId, include_appinfo = 1, include_played_free_games = 1 });
+            // var req = SteamWebAPI.CustomRequest("IPlayerService", "GetOwnedGames", "v0001", new { steamid = steamId, include_appinfo = 1, include_played_free_games = 1 });
+            // var responseString = req.GetResponseString(RequestFormat.JSON);
 
-            var responseString = req.GetResponseString(RequestFormat.JSON);
+            var repo = new SteamRepository();
+            var result = repo.GetOwnedGames(steamId);
 
 
-            return Ok(responseString);
+            return Ok(result);
 
 
         }
 
         [Route("api/steam/getallgames")]
-        public IHttpActionResult GetAllGames() {
+        public IHttpActionResult GetAllGames()
+        {
 
             var req = SteamWebAPI.CustomRequest("ISteamApps", "GetAppList", "v2", new { });
 
@@ -67,7 +70,8 @@ namespace SteamSearchApi.Controllers {
         }
 
         [Route("api/steam/getFriends/{steamId}")]
-        public IHttpActionResult GetFriends(string steamId) {
+        public IHttpActionResult GetFriends(string steamId)
+        {
 
             var repo = new SteamRepository();
             var friends = repo.GetFriends(steamId);
@@ -76,10 +80,11 @@ namespace SteamSearchApi.Controllers {
         }
 
         [Route("api/steam/gettopgames")]
-        public async Task<IHttpActionResult> GetTopGamesAsync() {
+        public IHttpActionResult GetTopGamesAsync()
+        {
 
             var repo = new SteamRepository();
-            string sTopGames = await repo.GetTopGamesAsync();
+            string sTopGames = repo.GetTopGames();
 
             return Ok(sTopGames);
 
@@ -88,11 +93,23 @@ namespace SteamSearchApi.Controllers {
 
         [Route("api/steam/getGamesInCommon")]
         [HttpPost]
-        public IHttpActionResult GetGamesInCommon([FromBody] List<Player> data) {
+        public IHttpActionResult GetGamesInCommon([FromBody] List<Player> data)
+        {
             var repo = new SteamRepository();
+            var result = repo.GetGamesInCommon(data);
+            return Ok(result);
 
-            return Ok(repo.GetGamesInCommon(data));
+        }
 
+
+        [Route("api/steam/getallcatagories")]
+        [HttpGet]
+        public IHttpActionResult GetAllCatagories()
+        {
+            var repo = new MongoRepository<Catagory>();
+            var result = repo.GetAll();
+            return Ok(result);
+            return Ok();
         }
 
     }

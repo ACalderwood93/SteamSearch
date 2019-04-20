@@ -77,9 +77,33 @@ i.material-icons {
     border-left: 1px solid #26a69a;
 }
 
+.flex-grid {
+    display: flex;
+}
 
+    .flex-grid .col {
+        flex: 1;
+    }
 
+.flex-grid-thirds {
+    display: flex;
+    justify-content: space-between;
+}
 
+    .flex-grid-thirds .col {
+        width: 32%;
+    }
 
+@media (max-width: 720px) {
+    .flex-grid,
+    .flex-grid-thirds {
+        display: block;
+        .col
 
+{
+    width: 100%;
+    margin: 0 0 10px 0;
+}
 
+}
+}

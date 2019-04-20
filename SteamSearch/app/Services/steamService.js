@@ -7,7 +7,7 @@
     'use strict';
 
     angular.module('steamSearch')
-        .service('steamService', ['$rootScope', '$http', 'WebApiUrl', function ($rootScope, $http, WebApiUrl) {
+        .service('steamService', ['$rootScope', '$http', 'WebApiUrl', '$timeout', function ($rootScope, $http, WebApiUrl,$timeout) {
 
             this.userData = {};
             this.recentGames = [];
@@ -18,6 +18,7 @@
             this.steamId = "";
             this.appsInCommon = [];
             this.featuredGames = [];
+            this.catagories = [];
 
 
 
@@ -86,7 +87,7 @@
                 }).then(function successCallback(response) {
 
 
-                    service.ownedGames = JSON.parse(response.data).response.games;
+                    service.ownedGames = response.data;
                     console.log(service.ownedGames);
                     service.dataLoaded = true;
                     // this callback will be called asynchronously
@@ -129,6 +130,8 @@
 
 
                     service.friends = response.data;
+                    service.GetAllCatagories();
+                    
 
                     // this callback will be called asynchronously
                     // when the response is available
@@ -171,7 +174,7 @@
                 }).then(function successCallback(response) {
                     var games = JSON.parse(response.data)["featured_win"];
                     service.featuredGames = games;
-                    
+
                     console.log(service.featuredGames);
 
                 }, function errorCallback(response) {
@@ -179,7 +182,27 @@
                 });
 
             }
+            this.GetAllCatagories = function () {
 
+                var service = this;
+                $http({
+                    method: 'GET',
+                    url: WebApiUrl + "/api/steam/getallcatagories"
+
+                }).then((response) => {
+
+                    service.catagories = response.data;
+
+                    $timeout(function () {
+                        $('select').formSelect();
+                    });
+                    
+
+                }, (errorResponse) => {
+
+                });
+
+            }
 
 
         }]);
